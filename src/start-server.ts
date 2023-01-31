@@ -11,12 +11,13 @@ import koaLogger, { timeContext, requestIdContext } from 'koa-bunyan-logger'
 // Middlewares
 import router from 'routes'
 import attachServices from 'middlewares/services/attach-services'
+import { OpenAIApi } from 'openai'
 
 const startServer = async (
   port: number,
-  services: { logger: Logger }
+  services: { logger: Logger, openAIApi: OpenAIApi }
 ): Promise<Koa<Koa.DefaultState, Koa.DefaultContext>> => {
-  const { logger } = services
+  const { logger, openAIApi } = services
 
   // Set up Koa Application
   const app = new Koa()
@@ -86,7 +87,7 @@ const startServer = async (
   /*
    * Attach our own services (e.g. logger, axios, etc.) that should be globally available in downstream middleware.
    */
-  app.use(attachServices(logger))
+  app.use(attachServices(logger, openAIApi))
 
 
   /*

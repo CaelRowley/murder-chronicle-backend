@@ -1,15 +1,18 @@
 import type { Middleware } from 'koa'
 import type Logger from 'bunyan'
+import { OpenAIApi } from 'openai'
 
 export type Services = {
-  logger: Logger
+  logger: Logger,
+  openAIApi: OpenAIApi,
 }
 
-type AttachServices = (logger: Logger) => Middleware
+type AttachServices = (logger: Logger, openAIApi: OpenAIApi) => Middleware
 const attachServices: AttachServices =
-  (logger) => async (ctx, next) => {
+  (logger, openAIApi) => async (ctx, next) => {
     const services: Services = {
       logger,
+      openAIApi,
     }
 
     ctx.state = {

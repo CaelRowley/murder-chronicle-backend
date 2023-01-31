@@ -1,10 +1,10 @@
 import Router from 'koa-router'
 
 // Routers
-import handleHello from './handle-hello'
+import handlePrompt from './prompt'
 
 const router = new Router()
 
-router.get('/', handleHello)
+router.post('/prompt', handlePrompt)
 
 export default router
