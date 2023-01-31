@@ -1,0 +1,99 @@
+{
+  // ts-node options. See also: https://typestrong.org/ts-node/docs/configuration
+  // ts-node offers TypeScript execution and REPL for node.js, with source map support.
+  /* ts-node does not see the types defined in @types without this set to true.
+    There might be an alternative fix or config */
+  "ts-node": {
+    "files": true,
+    "require": ["tsconfig-paths/register"]
+  },
+  "compilerOptions": {
+    "baseUrl": "./src",
+
+    // Generate .d.ts files for every TypeScript or JavaScript file inside your project. These .d.ts files are type definition files which describe the external API of your module. With .d.ts files, tools like TypeScript can provide intellisense and accurate types for un-typed code.
+    // https://www.typescriptlang.org/tsconfig#declaration
+    "declaration": true,
+
+    // Generates a source map for .d.ts files which map back to the original .ts source file. This will allow editors such as VS Code to go to the original .ts file when using features like Go to Definition.  You should strongly consider turning this on if you’re using project references.
+    // https://www.typescriptlang.org/tsconfig#declarationMap
+    "declarationMap": true,
+
+    // Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports.
+    // https://www.typescriptlang.org/tsconfig#esModuleInterop
+    "esModuleInterop": true,
+
+    // When this option is set, TypeScript will issue an error if a program tries to include a file by a casing different from the casing on disk.
+    // https://www.typescriptlang.org/tsconfig#forceConsistentCasingInFileNames
+    "forceConsistentCasingInFileNames": true,
+
+    // When set, TypeScript will include the original content of the .ts file as an embedded string in the source map.
+    // https://www.typescriptlang.org/tsconfig#inlineSources
+    // Enabled to help producing source maps for Sentry
+    // https://docs.sentry.io/platforms/javascript/sourcemaps/generating/#typescript
+    "inlineSources": true,
+
+    // TypeScript includes APIs for newer JS features matching the target you specify; for example the definition for Map is available if target is ES6 or newer.
+    // https://www.typescriptlang.org/tsconfig#lib
+    "lib": ["es2021"],
+
+    // Specify module code generation: 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020'.
+    // https://www.typescriptlang.org/tsconfig#module
+    "module": "commonjs",
+
+    // Specify the module resolution strategy: 'node' (Node.js) or 'classic' (used in TypeScript before the release of 1.6). You probably won’t need to use classic in modern code.
+    // https://www.typescriptlang.org/tsconfig#moduleResolution
+    "moduleResolution": "node",
+
+    // Check all code paths in a function to ensure they return a value.
+    // https://www.typescriptlang.org/tsconfig#noImplicitReturns
+    "noImplicitReturns": false,
+
+    // Report errors on unused local variables.
+    // https://www.typescriptlang.org/tsconfig#noUnusedLocals
+    "noUnusedLocals": true,
+
+    // Report errors on unused parameters.
+    // https://www.typescriptlang.org/tsconfig#noUnusedParameters
+    "noUnusedParameters": true,
+
+    // Build directory for the emitted *.js files
+    // https://www.typescriptlang.org/tsconfig#outDir
+    "outDir": "./build",
+
+    // Allows importing modules with a ‘.json’ extension, which is a common practice in node projects. This includes generating a type for the import based on the static JSON shape.
+    // https://www.typescriptlang.org/tsconfig#resolveJsonModule
+    "resolveJsonModule": true,
+
+    // Enables the generation of sourcemap files.
+    // https://www.typescriptlang.org/tsconfig#sourceMap
+    "sourceMap": true,
+
+    // Specify the location where a debugger should locate TypeScript files instead of relative source locations.
+    // https://www.typescriptlang.org/tsconfig#sourceRoot
+    // Enabled to help producing source maps for Sentry
+    // https://docs.sentry.io/platforms/javascript/sourcemaps/generating/#typescript
+    // Note: try with and without this
+    "sourceRoot": "/",
+
+    // The strict flag enables a wide range of type checking behavior that results in stronger guarantees of program correctness. Turning this on is equivalent to enabling all of the strict mode family options.
+    // https://www.typescriptlang.org/tsconfig#strict
+    "strict": true,
+
+    // Specify ECMAScript target version: ES3 (default), ES5, ES6/ES2015 (synonymous), ES7/ES2016, ES2017, ES2018, ES2019, ES2020, ESNext
+    // https://www.typescriptlang.org/tsconfig#target
+    "target": "es2021",
+
+    // Skip type checking all .d.ts files.
+    // https://www.typescriptlang.org/tsconfig#skipLibCheck
+    "skipLibCheck": true
+  },
+
+  // Specifies an array of filenames or patterns to include in the program.
+  // These filenames are resolved relative to the directory containing the tsconfig.json file.
+  // https://www.typescriptlang.org/tsconfig#include
+  "include": ["src/**/*.ts", "scripts", "src/types/**/*"],
+
+  // Specifies an array of filenames or patterns that should be skipped when resolving include.
+  // https://www.typescriptlang.org/tsconfig#exclude
+  "exclude": ["node_modules"]
+}
